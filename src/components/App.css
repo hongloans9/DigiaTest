@@ -1,0 +1,56 @@
+.App-header {
+  background-color: #adb5bd;
+  color: white;
+  padding: 32px;
+}
+
+.App-content{
+  margin: 32px;
+}
+
+.title {
+  color: #757575;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.table {
+  background-color: white;
+}
+
+.table th {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #757575;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.table td {
+  padding: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #505050;
+  font-weight: 400;
+}
+
+.table i {
+  font-size: 24px;
+  color: #909090;
+}
+
+.form-row {
+  background-color: white;
+  margin: 0 0 10px 0;
+}
+
+.form-group {
+  margin-top: 16px;
+}
+
+.btn-cancel {
+  color: #007bff;
+  margin-left: 10px;
+  width: 88px;
+}
+
