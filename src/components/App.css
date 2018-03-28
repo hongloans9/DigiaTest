@@ -13,30 +13,39 @@
   font-weight: 700;
   margin-bottom: 20px;
 }
+.container {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
 
-.table {
+.row {
   background-color: white;
-}
-
-.table th {
-  padding: 16px 24px;
-  font-size: 14px;
-  color: #757575;
-  font-weight: 500;
-  line-height: 16px;
-}
-
-.table td {
-  padding: 24px;
+  border-bottom: 1px solid lightslategray;
+  height: 72px;
   font-size: 16px;
   line-height: 24px;
   color: #505050;
   font-weight: 400;
 }
 
-.table i {
+.row-header {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #757575;
+  font-weight: 500;
+  line-height: 16px;
+  height: 48px;
+}
+
+.row i {
   font-size: 24px;
   color: #909090;
+}
+
+.edit-form {
+  max-width: 100%;
+  width: 100%;
 }
 
 .form-row {
@@ -51,6 +60,14 @@
 .btn-cancel {
   color: #007bff;
   margin-left: 10px;
-  width: 88px;
+}
+
+.btn-cancel2 {
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.btn {
+    width: 88px;
 }
 

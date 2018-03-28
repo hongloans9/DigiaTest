@@ -1,4 +1,4 @@
-import { ADD_PARTICIPANT, DELETE_PARTICIPANT } from '../actions/';
+import { ADD_PARTICIPANT, DELETE_PARTICIPANT, EDIT_PARTICIPANT } from '../actions/';
 
 const initialState = {
     participants: [
@@ -21,7 +21,6 @@ const initialState = {
             phone: '0556142125'
         }
     ],
-
 }
 
 export default function (state = initialState.participants, action) {
@@ -29,6 +28,17 @@ export default function (state = initialState.participants, action) {
         case ADD_PARTICIPANT:
             const newParticipant = Object.assign({ id: state.length + 1 }, action.values);
             return [newParticipant].concat(state);
+        case EDIT_PARTICIPANT:
+            return state.map((participant) =>{
+                if (participant.id !== action.participant.id) {
+                    return participant;
+                }
+                return {
+                    ...participant,
+                    ...action.participant
+                }
+            });
+               
         case DELETE_PARTICIPANT:
             return state.filter(participant => participant !== action.participant);
         default:

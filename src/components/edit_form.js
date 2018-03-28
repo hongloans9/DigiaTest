@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { addParticipant } from '../actions';
+import { editParticipant, showEditForm } from '../actions';
 import './App.css';
 
-class AddNew extends Component {
+class EditForm extends Component {
+
+    componentDidMount() {
+        this.handleInitialize();
+    }
+
+    handleInitialize() {
+        const initData = {
+            "name": this.props.initialValues.name,
+            "email": this.props.initialValues.email,
+            "phone": this.props.initialValues.phone
+        };
+        this.props.initialize(initData);
+    }
 
     renderField(field) {
         const { meta: { touched, error } } = field;
         const className = `form-control ${touched && error ? 'is-invalid' : ''}`;
         return (
-            <div className="form-group col-md-3">
+            <div className="form-group col-3">
                 <input className={className}
                     placeholder={field.label}
                     {...field.input} />
@@ -22,14 +35,15 @@ class AddNew extends Component {
     }
 
     onSubmit(values) {
-        this.props.addParticipant(values);
-        this.props.reset();
+        const newValues = Object.assign({ id: this.props.initialValues.id }, values);
+        this.props.editParticipant(newValues);
+        this.props.showEditForm({})
     }
 
     render() {
-        const { handleSubmit, pristine, reset, submitting } = this.props;
+        const { handleSubmit, submitting } = this.props;
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form className="edit-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div className="form-row">
                     <Field
                         label="Fullname"
@@ -44,11 +58,10 @@ class AddNew extends Component {
                     <Field
                         label="Phone number"
                         name="phone"
-                        type="number"
                         component={this.renderField} />
-                    <div className=" form-group col-md-3 " align="center">
-                        <button type="submit" className="btn btn-primary" disabled={submitting} >Add new</button>
-                        <button type="button" className="btn btn-cancel" disabled={pristine || submitting} onClick={reset}>Cancel</button>
+                    <div className=" form-group col-3 " align="center">
+                        <button type="button" className="btn btn-cancel2" onClick={() => this.props.showEditForm({})}>Cancel</button>
+                        <button type="submit" className="btn btn-primary" disabled={submitting}>Save</button>
                     </div>
                 </div>
             </form>
@@ -78,11 +91,13 @@ function validate(values) {
     }
     return errors
 }
-
+function mapStateToProps(state) {
+    return { initialValues: state.selected }
+}
 
 export default reduxForm({
     validate,
-    form: 'AddNewForm'
+    form: 'EditForm'
 })(
-    connect(null, { addParticipant })(AddNew)
+    connect(mapStateToProps, { editParticipant, showEditForm })(EditForm)
     );
