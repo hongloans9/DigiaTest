@@ -19,10 +19,8 @@ class ParticipantsList extends Component {
                     <div className="col-3 col-name">{participant.name}</div>
                     <div className="col-4 ">{participant.email}</div>
                     <div className="col-3">{participant.phone}</div>
-                    <div className="col">
-                        <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>
-                    </div>
-                    <div className="col">
+                    <div className="col" align="right">
+                        <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>                  
                         <i className="fa fa-trash" onClick={() => this.props.deleteParticipant(participant)}></i>
                     </div>
                 </div>

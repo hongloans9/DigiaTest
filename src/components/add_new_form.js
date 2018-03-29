@@ -9,8 +9,9 @@ class AddNew extends Component {
     renderField(field) {
         const { meta: { touched, error } } = field;
         const className = `form-control ${touched && error ? 'is-invalid' : ''}`;
+        const class_col = `form-group ${field.type === 'email' ? 'col-md-4' : 'col-md-3'}`;
         return (
-            <div className="form-group col-md-3">
+            <div className={class_col}>
                 <input className={className}
                     placeholder={field.label}
                     {...field.input} />
@@ -46,7 +47,7 @@ class AddNew extends Component {
                         name="phone"
                         type="number"
                         component={this.renderField} />
-                    <div className=" form-group col-md-3 " align="right">
+                    <div className="form-group col " align="right">
                         <button type="submit" className="btn" id="btn-sub" disabled={submitting} >Add new</button>
                     </div>
                 </div>
