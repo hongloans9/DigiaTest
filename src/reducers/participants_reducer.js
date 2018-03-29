@@ -1,4 +1,4 @@
-import { ADD_PARTICIPANT, DELETE_PARTICIPANT, EDIT_PARTICIPANT } from '../actions/';
+import { ADD_PARTICIPANT, DELETE_PARTICIPANT, EDIT_PARTICIPANT, SORT_ASC, SORT_DESC } from '../actions/';
 
 const initialState = {
     participants: [
@@ -21,15 +21,16 @@ const initialState = {
             phone: '0556142125'
         }
     ],
+    isSortAscending: true
 }
 
-export default function (state = initialState.participants, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_PARTICIPANT:
-            const newParticipant = Object.assign({ id: state.length + 1 }, action.values);
-            return [newParticipant].concat(state);
+            const newParticipant = Object.assign({ id: state.participants.length + 1 }, action.values);
+            return{...state, participants: [newParticipant].concat(state.participants) };
         case EDIT_PARTICIPANT:
-            return state.map((participant) =>{
+            return{...state, participants: state.participants.map((participant) => {
                 if (participant.id !== action.participant.id) {
                     return participant;
                 }
@@ -37,12 +38,39 @@ export default function (state = initialState.participants, action) {
                     ...participant,
                     ...action.participant
                 }
-            });
-               
+            })
+            };
         case DELETE_PARTICIPANT:
-            return state.filter(participant => participant !== action.participant);
+            return {...state, participants: state.participants.filter(participant => participant !== action.participant)};
+        case SORT_ASC:
+            return {...state, participants: state.participants.sort(dynamicSortAsc(action.value)), isSortAscending: false};
+        case SORT_DESC:
+            return {...state, participants: state.participants.sort(dynamicSortDesc(action.value)), isSortAscending: true};
         default:
             return state;
     }
+}
 
+function dynamicSortAsc(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a, b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+function dynamicSortDesc(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a, b) {
+        var result = (a[property] < b[property]) ? 1 : (a[property] > b[property]) ? -1 : 0;
+        return result * sortOrder;
+    }
 }

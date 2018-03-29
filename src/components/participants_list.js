@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteParticipant, showEditForm } from '../actions';
+import { deleteParticipant, showEditForm, sortAsc, sortDesc } from '../actions';
 import EditForm from './edit_form';
 import './App.css';
 
@@ -11,7 +11,8 @@ class ParticipantsList extends Component {
             return (
                 <div key={index} className="row">
                     <EditForm />
-                </div>);
+                </div>
+            );
         } else {
             return (
                 <div key={index} className="row align-items-center">
@@ -25,23 +26,32 @@ class ParticipantsList extends Component {
                         <i className="fa fa-trash" onClick={() => this.props.deleteParticipant(participant)}></i>
                     </div>
                 </div>
-
             );
         }
     }
 
+    sortHandler = (value) => {
+        const { isSortAscending } = this.props.participants;
+        if (isSortAscending) {
+            this.props.sortAsc(value);
+        } else {
+            this.props.sortDesc(value);
+        }
+    };
+
     render() {
+        const { participants } = this.props.participants;
         return (
             <div className="container">
                 <div className="row align-items-center row-header">
-                    <div className="col-3">Name</div>
-                    <div className="col-4">E-mail address</div>
-                    <div className="col-3">Phone number</div>
+                    <div onClick={() => this.sortHandler("name")} className="col-3">Name</div>
+                    <div onClick={() => this.sortHandler("email")} className="col-4">E-mail address</div>
+                    <div onClick={() => this.sortHandler("phone")} className="col-3">Phone number</div>
                     <div className="col"></div>
                     <div className="col"></div>
                 </div>
 
-                {this.props.participants.map((participant, index) => {
+                {participants.map((participant, index) => {
                     return this.renderParticipants(participant, index);
                 })}
 
@@ -57,4 +67,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { deleteParticipant, showEditForm })(ParticipantsList);
+export default connect(mapStateToProps, { deleteParticipant, showEditForm, sortAsc, sortDesc })(ParticipantsList);
