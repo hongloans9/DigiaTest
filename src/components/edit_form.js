@@ -23,7 +23,7 @@ class EditForm extends Component {
         const { meta: { touched, error } } = field;
         const className = `form-control ${touched && error ? 'is-invalid' : ''}`;
         return (
-            <div className="form-group col-3">
+            <div className="form-group form-edit col-3">
                 <input className={className}
                     placeholder={field.label}
                     {...field.input} />
@@ -44,7 +44,7 @@ class EditForm extends Component {
         const { handleSubmit, submitting } = this.props;
         return (
             <form className="edit-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <div className="form-row">
+                <div className="form-row form-edit">
                     <Field
                         label="Fullname"
                         name="name"
@@ -59,9 +59,9 @@ class EditForm extends Component {
                         label="Phone number"
                         name="phone"
                         component={this.renderField} />
-                    <div className=" form-group col-3 " align="center">
+                    <div className=" form-group col-3 " align="right">
                         <button type="button" className="btn btn-cancel2" onClick={() => this.props.showEditForm({})}>Cancel</button>
-                        <button type="submit" className="btn btn-primary" disabled={submitting}>Save</button>
+                        <button type="submit" className="btn btn-primary btn-1" disabled={submitting}>Save</button>
                     </div>
                 </div>
             </form>

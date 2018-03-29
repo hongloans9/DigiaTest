@@ -16,8 +16,8 @@ class ParticipantsList extends Component {
         } else {
             return (
                 <div key={index} className="row align-items-center">
-                    <div className="col-3">{participant.name}</div>
-                    <div className="col-4">{participant.email}</div>
+                    <div className="col-3 col-name">{participant.name}</div>
+                    <div className="col-4 ">{participant.email}</div>
                     <div className="col-3">{participant.phone}</div>
                     <div className="col">
                         <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>
@@ -44,9 +44,9 @@ class ParticipantsList extends Component {
         return (
             <div className="container">
                 <div className="row align-items-center row-header">
-                    <div onClick={() => this.sortHandler("name")} className="col-3">Name</div>
-                    <div onClick={() => this.sortHandler("email")} className="col-4">E-mail address</div>
-                    <div onClick={() => this.sortHandler("phone")} className="col-3">Phone number</div>
+                    <div onClick={() => this.sortHandler("name")} className="col-3 col-name" id="sorting">Name</div>
+                    <div onClick={() => this.sortHandler("email")} className="col-4" id="sorting">E-mail address</div>
+                    <div onClick={() => this.sortHandler("phone")} className="col-3" id="sorting">Phone number</div>
                     <div className="col"></div>
                     <div className="col"></div>
                 </div>

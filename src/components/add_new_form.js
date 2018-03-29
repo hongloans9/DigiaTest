@@ -46,9 +46,8 @@ class AddNew extends Component {
                         name="phone"
                         type="number"
                         component={this.renderField} />
-                    <div className=" form-group col-md-3 " align="center">
-                        <button type="submit" className="btn btn-primary" disabled={submitting} >Add new</button>
-                        <button type="button" className="btn btn-cancel" disabled={pristine || submitting} onClick={reset}>Cancel</button>
+                    <div className=" form-group col-md-3 " align="right">
+                        <button type="submit" className="btn" id="btn-sub" disabled={submitting} >Add new</button>
                     </div>
                 </div>
             </form>
