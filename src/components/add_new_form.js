@@ -9,8 +9,12 @@ class AddNew extends Component {
     renderField(field) {
         const { meta: { touched, error } } = field;
         const className = `form-control ${touched && error ? 'is-invalid' : ''}`;
-        const class_col = `form-group ${field.type === 'email' ? 'col-md-4' : 'col-md-3'}`;
-        return (
+        let class_col = 'form-group col-md-3';
+        if (field.type === 'email') {
+            class_col = 'form-group col-md-4';
+        } else if (field.type === 'number') {
+            class_col = 'form-group col-md';
+        } return (
             <div className={class_col}>
                 <input className={className}
                     placeholder={field.label}
@@ -28,7 +32,8 @@ class AddNew extends Component {
     }
 
     render() {
-        const { handleSubmit, pristine, reset, submitting } = this.props;
+        const { handleSubmit, submitting, invalid } = this.props;
+        const idName = `${invalid ? 'btn-sub' : 'btn-sub-active'}`;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div className="form-row">
@@ -48,7 +53,7 @@ class AddNew extends Component {
                         type="number"
                         component={this.renderField} />
                     <div className="form-group col " align="right">
-                        <button type="submit" className="btn" id="btn-sub" disabled={submitting} >Add new</button>
+                        <button type="submit" className="btn" id={idName} disabled={submitting} >Add new</button>
                     </div>
                 </div>
             </form>
@@ -75,6 +80,8 @@ function validate(values) {
         errors.phone = 'Must be a number'
     } else if (values.phone.length < 10) {
         errors.phone = 'Must be at least 10 numbers'
+    } else if (values.phone.length >15) {
+        errors.phone = "Invalid phone number"
     }
     return errors
 }

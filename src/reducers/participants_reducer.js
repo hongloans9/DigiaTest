@@ -21,31 +21,70 @@ const initialState = {
             phone: '0556142125'
         }
     ],
-    isSortAscending: true
+    isSortAscending: true,
+    sortByName: false,
+    sortByEmail: false,
+    sortByPhone: false
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_PARTICIPANT:
             const newParticipant = Object.assign({ id: state.participants.length + 1 }, action.values);
-            return{...state, participants: [newParticipant].concat(state.participants) };
+            return {
+                ...state, participants: [newParticipant].concat(state.participants),
+                sortByName: false,
+                sortByEmail: false,
+                sortByPhone: false
+            };
         case EDIT_PARTICIPANT:
-            return{...state, participants: state.participants.map((participant) => {
-                if (participant.id !== action.participant.id) {
-                    return participant;
-                }
-                return {
-                    ...participant,
-                    ...action.participant
-                }
-            })
+            return {
+                ...state, participants: state.participants.map((participant) => {
+                    if (participant.id !== action.participant.id) {
+                        return participant;
+                    }
+                    return {
+                        ...participant,
+                        ...action.participant
+                    }
+                })
             };
         case DELETE_PARTICIPANT:
-            return {...state, participants: state.participants.filter(participant => participant !== action.participant)};
+            return { ...state, participants: state.participants.filter(participant => participant !== action.participant) };
         case SORT_ASC:
-            return {...state, participants: state.participants.sort(dynamicSortAsc(action.value)), isSortAscending: false};
+            if (action.value === "name") {
+                state.sortByName = true;
+                state.sortByEmail = false;
+                state.sortByPhone = false;
+            } else if (action.value === "email") {
+                state.sortByEmail = true;
+                state.sortByPhone = false;
+                state.sortByName = false;
+            } else {
+                state.sortByPhone = true;
+                state.sortByEmail = false;
+                state.sortByName = false;
+            }
+            return {
+                ...state,
+                participants: state.participants.sort(dynamicSortAsc(action.value)),
+                isSortAscending: false,
+            };
         case SORT_DESC:
-            return {...state, participants: state.participants.sort(dynamicSortDesc(action.value)), isSortAscending: true};
+            if (action.value === "name") {
+                state.sortByName = true;
+                state.sortByEmail = false;
+                state.sortByPhone = false;
+            } else if (action.value === "email") {
+                state.sortByEmail = true;
+                state.sortByPhone = false;
+                state.sortByName = false;
+            } else {
+                state.sortByPhone = true;
+                state.sortByEmail = false;
+                state.sortByName = false;
+            }
+            return { ...state, participants: state.participants.sort(dynamicSortDesc(action.value)), isSortAscending: true };
         default:
             return state;
     }
@@ -58,7 +97,9 @@ function dynamicSortAsc(property) {
         property = property.substr(1);
     }
     return function (a, b) {
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        var valueA = a[property].toLowerCase();
+        var valueB = b[property].toLowerCase();
+        var result = (valueA < valueB ? -1 : (valueA > valueB) ? 1 : 0);
         return result * sortOrder;
     }
 }
@@ -70,7 +111,9 @@ function dynamicSortDesc(property) {
         property = property.substr(1);
     }
     return function (a, b) {
-        var result = (a[property] < b[property]) ? 1 : (a[property] > b[property]) ? -1 : 0;
+        var valueA = a[property].toLowerCase();
+        var valueB = b[property].toLowerCase();
+        var result = (valueA < valueB ? 1 : (valueA > valueB) ? -1 : 0);
         return result * sortOrder;
     }
 }

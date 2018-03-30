@@ -17,10 +17,10 @@ class ParticipantsList extends Component {
             return (
                 <div key={index} className="row align-items-center">
                     <div className="col-3 col-name">{participant.name}</div>
-                    <div className="col-4 ">{participant.email}</div>
+                    <div className="col-4 col-mail">{participant.email}</div>
                     <div className="col-3">{participant.phone}</div>
                     <div className="col" align="right">
-                        <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>                  
+                        <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>
                         <i className="fa fa-trash" onClick={() => this.props.deleteParticipant(participant)}></i>
                     </div>
                 </div>
@@ -37,22 +37,34 @@ class ParticipantsList extends Component {
         }
     };
 
+    showIcon(i) {
+        if (i === true) {
+            return 'sorting'
+        } else {
+            return 'no-sorting'
+        }
+    }
+
     render() {
-        const { participants } = this.props.participants;
+        const { participants, sortByName, sortByEmail, sortByPhone } = this.props.participants;
         return (
             <div className="container">
                 <div className="row align-items-center row-header">
-                    <div onClick={() => this.sortHandler("name")} className="col-3 col-name" id="sorting">Name</div>
-                    <div onClick={() => this.sortHandler("email")} className="col-4" id="sorting">E-mail address</div>
-                    <div onClick={() => this.sortHandler("phone")} className="col-3" id="sorting">Phone number</div>
+                    <div onClick={() => this.sortHandler("name")} className="col-3 col-name" id={this.showIcon(sortByName)}>Name
+                        <i className="fa fa-arrow-down"></i>
+                    </div>
+                    <div onClick={() => this.sortHandler("email")} className="col-4" id={this.showIcon(sortByEmail)}>E-mail address
+                        <i className="fa fa-arrow-down"></i>
+                    </div>
+                    <div onClick={() => this.sortHandler("phone")} className="col-3" id={this.showIcon(sortByPhone)}>Phone number
+                       <i className="fa fa-arrow-down"></i>
+                    </div>
                     <div className="col"></div>
                     <div className="col"></div>
                 </div>
-
                 {participants.map((participant, index) => {
                     return this.renderParticipants(participant, index);
                 })}
-
             </div>
         );
     }

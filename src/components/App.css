@@ -4,25 +4,35 @@
   padding: 32px;
 }
 
+.App-name {
+  font-size: 23px;
+  font-weight: 550;
+}
+
+.App-name img {
+  margin-right: 16px;
+  margin-bottom: 3px;
+}
+
 .App-content{
   margin: 32px;
+  width: 914px;
 }
 
 .title {
   color: #757575;
   font-weight: 550;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 23px;
+  margin-top: 65px;
+  margin-bottom: 35px;
 }
 .container {
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
+  max-width: 912px
 }
 
 .row {
   background-color: white;
-  border-bottom: 1.5px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
   height: 72px;
   font-size: 16px;
   line-height: 24px;
@@ -44,10 +54,7 @@
   color: #909090;
 }
 
-.col-4 {
-  padding-left: 24px;
-}
-.col-3 {
+.col-3, .col-4 {
   padding-left: 24px;
 }
 
@@ -56,13 +63,17 @@
   margin-left: 32px;
 }
 
-.fa:hover {
-  color: #007bff;
+#sorting i {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #505050;
 }
-
-#sorting:hover {
+#sorting {
   color: #505050;
   font-weight: 600;
+}
+#no-sorting i {
+  display: none;
 }
 
 .edit-form {
@@ -76,11 +87,17 @@
   padding-left: 7px;
 }
 .form-edit {
-  margin-top: -1px;
+  margin-top: -2px;
+  border-top: 1px solid #f1f1f1;
 }
 
 .form-group {
   margin-top: 16px;
+}
+
+.form-row>[class*=col-] {
+  padding-right: 7px;
+  padding-left: 9px;
 }
 
 .form-group input {
@@ -90,21 +107,33 @@
   font-size: 16px;
   line-height: 24px;
   color: #505050;
+  border-color: #e4e4e4;
   font-weight: 400;
+}
+.col-md-3 input, .col-name {
+    text-transform: capitalize;
+}
+.col-md-4 input, .col-mail {
+  text-transform: lowercase;
 }
 
 #btn-sub {
   color: #808080;
   width: 100px;
   font-size: 16px;
-  font-weight: 600;
   margin-right: 10px;
+}
+#btn-sub-active { 
+  color: white;
+  width: 100px;
+  font-size: 16px;
+  margin-right: 10px;
+  background-color: #007bff;
 }
 
 .btn-cancel {
   color: #007bff;
-  margin-right: 5px;
-  padding: 6px 8px;
+  margin-right: 7px;
 }
 
 .btn-primary {
@@ -112,9 +141,9 @@
 }
 
 .btn {
-    font-weight: 600;
-    height: 40px;
-    border-radius: 0;
-    font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  border-radius: 0;
+  font-size: 14px;
 }
 
