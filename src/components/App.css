@@ -6,7 +6,7 @@
 
 .App-name {
   font-size: 23px;
-  font-weight: 550;
+  font-weight: 600;
 }
 
 .App-name img {
@@ -21,7 +21,7 @@
 
 .title {
   color: #757575;
-  font-weight: 550;
+  font-weight: 600;
   font-size: 23px;
   margin-top: 65px;
   margin-bottom: 35px;
@@ -120,13 +120,12 @@
 #btn-sub {
   color: #808080;
   width: 100px;
-  font-size: 16px;
   margin-right: 10px;
+  background-color: #ededed;
 }
 #btn-sub-active { 
   color: white;
   width: 100px;
-  font-size: 16px;
   margin-right: 10px;
   background-color: #007bff;
 }
@@ -134,6 +133,7 @@
 .btn-cancel {
   color: #007bff;
   margin-right: 7px;
+  background-color: #ededed;
 }
 
 .btn-primary {
@@ -141,9 +141,8 @@
 }
 
 .btn {
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
-

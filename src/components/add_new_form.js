@@ -52,7 +52,7 @@ class AddNew extends Component {
                         name="phone"
                         type="number"
                         component={this.renderField} />
-                    <div className="form-group col " align="right">
+                    <div className="form-group col" align="right">
                         <button type="submit" className="btn" id={idName} disabled={submitting} >Add new</button>
                     </div>
                 </div>
