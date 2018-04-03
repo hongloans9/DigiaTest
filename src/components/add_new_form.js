@@ -68,11 +68,15 @@ function validate(values) {
         errors.name = 'Required'
     } else if (values.name.length < 6) {
         errors.name = 'Must be more than 5 characters'
+    } else if (values.name.length > 35) {
+        errors.name = 'Must be less than 35 characters'
     }
     if (!values.email) {
         errors.email = 'Required'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address'
+    }  else if (values.email.length > 35) {
+        errors.email = 'Must be less than 35 characters'
     }
     if (!values.phone) {
         errors.phone = 'Required'

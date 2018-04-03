@@ -19,10 +19,16 @@ const initialState = {
             name: 'Regina Rose',
             email: 'regina.rose@gmail.com',
             phone: '0556142125'
+        },
+        {
+            id: 4,
+            name: 'Egina Rose',
+            email: 'gina.rose@gmail.com',
+            phone: '0556142125'
         }
     ],
     isSortAscending: true,
-    sortByName: false,
+    sortByName: true,
     sortByEmail: false,
     sortByPhone: false
 }
@@ -33,7 +39,7 @@ export default function (state = initialState, action) {
             const newParticipant = Object.assign({ id: state.participants.length + 1 }, action.values);
             return {
                 ...state, participants: [newParticipant].concat(state.participants),
-                sortByName: false,
+                sortByName: true,
                 sortByEmail: false,
                 sortByPhone: false
             };
