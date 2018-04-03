@@ -11,7 +11,6 @@ class ParticipantsList extends Component {
     }
 
     renderParticipants(participant, index) {
-        const { sortByName, sortByEmail, sortByPhone } = this.props.participants;
         if (this.props.selected.id === participant.id) {
             return (
                 <div key={index} className="row">
@@ -21,9 +20,9 @@ class ParticipantsList extends Component {
         } else {
             return (
                 <div key={index} className="row align-items-center">
-                    <div className="col-3 col-name" id={this.showIcon(sortByName)}>{participant.name}</div>
-                    <div className="col-4 col-mail" id={this.showIcon(sortByEmail)}>{participant.email}</div>
-                    <div className="col-3" id={this.showIcon(sortByPhone)}>{participant.phone}</div>
+                    <div className="col-3 col-name">{participant.name}</div>
+                    <div className="col-4 col-mail">{participant.email}</div>
+                    <div className="col-3">{participant.phone}</div>
                     <div className="col" align="right">
                         <i className="fa fa-pencil" onClick={() => this.props.showEditForm(participant)}></i>
                         <i className="fa fa-trash" onClick={() => this.props.deleteParticipant(participant)}></i>

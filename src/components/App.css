@@ -50,7 +50,7 @@
   padding: 16px 0;
   font-size: 14px;
   color: #757575;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 16px;
   height: 48px;
   cursor: pointer;
@@ -77,8 +77,7 @@
   color: #505050;
 }
 #sorting {
-  font-weight: 600;
-  color: #505050;
+  color: #202020;
 }
 #no-sorting i {
   display: none;
@@ -136,31 +135,32 @@
   margin-right: 10px;
   background-color: #ededed;
 }
+#btn-sub:hover {
+  background-color: #d8d8d8;
+}
 #btn-sub-active { 
   color: white;
   width: 100px;
   margin-right: 10px;
   background-color: #007bff;
 }
-
+#btn-sub-active:hover {
+  background-color: #0470e4;
+}
 .btn-cancel {
   color: #007bff;
   margin-right: 7px;
   background-color: #ededed;
 }
-
+.btn-cancel:hover {
+  background-color: #d8d8d8;
+}
 .btn-primary {
   margin-right: 10px;
 }
-
 .btn {
   font-weight: 500;
   height: 40px;
   border-radius: 0;
-  font-size: 15px;
-  opacity: 0.8;
-}
-.btn:hover {
-  opacity: 1;
   font-size: 16px;
 }
